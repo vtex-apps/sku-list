@@ -1,0 +1,31 @@
+{
+  "vendor": "vtex",
+  "name": "sku-list",
+  "version": "0.1.1",
+  "title": "Challenge",
+  "description": "",
+  "builders": {
+    "react": "3.x",
+    "messages": "1.x",
+    "docs": "0.x",
+    "store": "0.x"
+  },
+  "dependencies": {
+    "vtex.store": "2.x",
+    "vtex.store-graphql": "2.x",
+    "vtex.store-icons": "0.x",
+    "vtex.device-detector": "0.x",
+    "vtex.responsive-values": "0.x",
+    "vtex.product-context": "0.x",
+    "vtex.product-quantity": "1.x",
+    "vtex.css-handles": "0.x",
+    "vtex.store-components": "3.x",
+    "vtex.flex-layout": "0.x",
+    "biscoind.bisco-graphql": "0.x"
+  },
+  "registries": [
+    "smartcheckout"
+  ],
+  "policies": [],
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

@@ -1,0 +1,28 @@
+{
+  "sku-list": {
+    "blocks": [
+      "sku-content"
+    ]
+  },
+  "sku-content": {
+    "children": [
+      "sku-name",
+      "sku-images",
+      "sku-seller",
+      "sku-buy-button",
+      "sku-quantity-selector"
+    ]
+  },
+  "sku-seller": {
+    "children": [
+      "seller-name",
+      "seller-inventory",
+      "seller-price"
+    ]
+  },
+  "sku-buy-button": {
+    "blocks": [
+      "sku-selector"
+    ]
+  }
+}

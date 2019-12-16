@@ -1,0 +1,9 @@
+query QuantityPriceBreaks($itemId: String, $sellerId: String, $postalCode: String) {
+  priceBreaks(itemId: $itemId, sellerId: $sellerId, postalCode: $postalCode) {
+    itemId
+    minQuantity
+    maxQuantity
+    price
+    leadTime
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "sku-list": {
+    "component": "SkuList",
+    "required": [
+      "sku-content"
+    ]
+  },
+  "sku-content": {
+    "component": "SkuContent",
+    "composition": "children",
+    "allowed": [
+      "flex-layout",
+      "sku-name",
+      "sku-seller",
+      "sku-images",
+      "sku-quantity-selector",
+      "sku-buy-button",
+      "sku-selector"
+    ]
+  },
+  "sku-name": {
+    "component": "SkuName"
+  },
+  "sku-images": {
+    "component": "SkuImages"
+  },
+  "sku-seller": {
+    "component": "SkuSeller",
+    "composition": "children",
+    "allowed": [
+      "flex-layout",
+      "seller-name",
+      "seller-inventory",
+      "seller-price"
+    ]
+  },
+  "seller-name": {
+    "component": "SellerName"
+  },
+  "seller-inventory": {
+    "component": "SellerInventory"
+  },
+  "seller-price": {
+    "component": "SellerPrice"
+  },
+  "sku-buy-button": {
+    "component": "SkuBuyButton",
+    "allowed": [
+      "sku-selector"
+    ]
+  },
+  "sku-quantity-selector": {
+    "component": "SkuQuantitySelector"
+  }
+}
