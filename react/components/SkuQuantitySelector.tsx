@@ -2,8 +2,7 @@ import React from 'react'
 import { Item } from '../typings'
 import { useSku } from './SkuContext'
 
-import ProductQuantity from 'vtex.product-quantity/ProductQuantity'
-// import SKUSelector from 'vtex.store-components/SKUSelector'
+import { ExtensionPoint } from 'vtex.render-runtime'
 
 interface Props {
   sku: Item
@@ -16,7 +15,11 @@ const SkuQuantitySelector = () => {
   return (
     <div>
       {/*<SKUSelector skuItems={[sku]} skuSelected={sku} />*/}
-      <ProductQuantity selectedItem={sku} selectedQuantity={selectedQuantity} />
+      <ExtensionPoint
+        id="item-quantity"
+        selectedItem={sku}
+        selectedQuantity={selectedQuantity}
+      />
     </div>
   )
 }

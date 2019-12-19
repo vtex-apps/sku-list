@@ -15,20 +15,6 @@ interface State {
 
 type Dispatch = (action: Action) => void
 
-// type SetProductAction = {
-//   type: 'SET_PRODUCT',
-//   args: {
-//     product: any
-//   }
-// }
-
-// type SetProductQueryAction = {
-//   type: 'SET_PRODUCT_QUERY',
-//   args: {
-//     query: string
-//   }
-// }
-
 interface SetHoverAction {
   type: 'SET_HOVER'
   args: {
@@ -43,26 +29,17 @@ interface SetLoadingAction {
   }
 }
 
-// type SetProductQuantity = {
-//   type: 'SET_QUANTITY'
-//   args: {
-//     quantity: number
-//   }
-// }
+interface SetProductQuantity {
+  type: 'SET_QUANTITY'
+  args: {
+    quantity: number
+  }
+}
 
-type Action = SetHoverAction | SetLoadingAction
+type Action = SetHoverAction | SetLoadingAction | SetProductQuantity
 
 export function reducer(state: State, action: Action) {
   switch (action.type) {
-    // case 'SET_PRODUCT': {
-    //   const product = action.args.product
-    //   return {
-    //     ...state,
-    //     product: product,
-    //     //TODO: STOP USING PRODUCT.SKU https://app.clubhouse.io/vtex/story/18547/productsummarycontext-refactor
-    //     selectedItem: product.sku
-    //   }
-    // }
     case 'SET_HOVER': {
       return {
         ...state,
@@ -75,17 +52,12 @@ export function reducer(state: State, action: Action) {
         isLoading: action.args.isLoading,
       }
     }
-    // case 'SET_QUANTITY': {
-    //   return {
-    //     ...state,
-    //     selectedQuantity: action.args.quantity,
-    //   }
-    // }
-    // case 'SET_PRODUCT_QUERY':
-    //   return {
-    //     ...state,
-    //     query: action.args.query,
-    //   }
+    case 'SET_QUANTITY': {
+      return {
+        ...state,
+        selectedQuantity: action.args.quantity,
+      }
+    }
     default:
       return state
   }

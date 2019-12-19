@@ -13,9 +13,7 @@
       "sku-name",
       "sku-seller",
       "sku-images",
-      "sku-quantity-selector",
-      "sku-buy-button",
-      "sku-selector"
+      "sku-quantity-selector"
     ]
   },
   "sku-name": {
@@ -43,13 +41,13 @@
   "seller-price": {
     "component": "SellerPrice"
   },
-  "sku-buy-button": {
-    "component": "SkuBuyButton",
-    "allowed": [
-      "sku-selector"
-    ]
+  "item-quantity": {
+    "component": "ItemQuantity"
   },
   "sku-quantity-selector": {
-    "component": "SkuQuantitySelector"
+    "component": "SkuQuantitySelector",
+    "allowed": [
+      "item-quantity"
+    ]
   }
 }

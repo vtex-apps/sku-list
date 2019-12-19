@@ -9,7 +9,6 @@
       "sku-name",
       "sku-images",
       "sku-seller",
-      "sku-buy-button",
       "sku-quantity-selector"
     ]
   },
@@ -20,9 +19,9 @@
       "seller-price"
     ]
   },
-  "sku-buy-button": {
+  "sku-quantity-selector": {
     "blocks": [
-      "sku-selector"
+      "item-quantity"
     ]
   }
 }

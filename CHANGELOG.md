@@ -7,20 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.1.1] - 2019-11-06
-
-### Fixed
-
-- Condition to show content.
-
-## [0.1.0] - 2019-11-05
-
-### Added
-
-- Initial implementation.
-
-## [0.0.2] - 2019-11-04
-
-### Added
-
-- Intial release.
+## Added
+- Initial release
+- Added `sku-quantity-selector`
