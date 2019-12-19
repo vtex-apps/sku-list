@@ -13,6 +13,7 @@
   "dependencies": {
     "vtex.store": "2.x",
     "vtex.store-graphql": "2.x",
+    "vtex.apps-graphql": "2.x",
     "vtex.store-icons": "0.x",
     "vtex.device-detector": "0.x",
     "vtex.responsive-values": "0.x",

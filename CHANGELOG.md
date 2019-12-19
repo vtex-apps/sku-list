@@ -10,3 +10,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Added
 - Initial release
 - Added `sku-quantity-selector`
+- Added `sku-buy-button`

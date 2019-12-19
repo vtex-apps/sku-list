@@ -13,7 +13,8 @@
       "sku-name",
       "sku-seller",
       "sku-images",
-      "sku-quantity-selector"
+      "sku-quantity-selector",
+      "sku-buy-button"
     ]
   },
   "sku-name": {
@@ -48,6 +49,15 @@
     "component": "SkuQuantitySelector",
     "allowed": [
       "item-quantity"
+    ]
+  },
+  "item-buy-button": {
+    "component": "BuyButton"
+  },
+  "sku-buy-button": {
+    "component": "SkuBuyButton",
+    "allowed": [
+      "item-buy-button"
     ]
   }
 }

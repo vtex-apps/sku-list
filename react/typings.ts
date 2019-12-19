@@ -21,6 +21,7 @@ export interface Item {
   unitMultiplier: number
   images: Image[]
   sellers: Seller[]
+  options?: BuyButtonItemOption[]
 }
 
 export interface LineItem {
@@ -40,7 +41,7 @@ export interface Image {
 }
 
 export interface Seller {
-  sellerId: number
+  sellerId: string | number
   sellerName: string
   commertialOffer: CommercialOffer
 }
@@ -168,11 +169,11 @@ export interface ParsedAssemblyOptions {
 export interface BuyButtonItem {
   skuId: string
   quantity: number
-  seller: string | number
-  name: string
-  price: number
+  seller?: string | number
+  name?: string
+  price?: number
   variant?: string
-  brand: string
+  brand?: string
   options: BuyButtonItemOption[]
 }
 
