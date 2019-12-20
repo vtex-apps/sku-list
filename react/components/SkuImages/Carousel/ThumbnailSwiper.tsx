@@ -1,14 +1,25 @@
 import React from 'react'
-import { THUMB_SIZE, imageUrlForSize } from '../modules/images'
+import { THUMB_SIZE } from '../modules/images'
 import classNames from 'classnames'
 import { THUMBS_POSITION_HORIZONTAL } from '../../../utils/enums'
+import { imageUrl } from '../../../utils/aspectRatioUtil'
 import { useCssHandles } from 'vtex.css-handles'
-import styles from '../../../styles.css'
 
-const CSS_HANDLES = ['figure', 'carouselGaleryThumbs', 'carouselThumbBorder']
+const CSS_HANDLES = [
+  'figure',
+  'thumbImg',
+  'productImagesThumb',
+  'carouselThumbBorder',
+  'carouselGaleryThumbs',
+  'productImagesThumbActive',
+]
+
+const THUMB_MAX_SIZE = 256
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
-const Swiper = window.navigator ? require('react-id-swiper/lib/ReactIdSwiper.full').default : null
+const Swiper = window.navigator
+  ? require('react-id-swiper/lib/ReactIdSwiper').default
+  : null
 
 interface ThumbnailProps {
   itemContainerClasses: string
@@ -17,6 +28,9 @@ interface ThumbnailProps {
   thumbUrl: string
   height: string
   index: number
+  handles: any
+  maxHeight: number
+  aspectRatio: string
 }
 
 interface Slide {
@@ -51,36 +65,42 @@ interface ThumbnailSwiperProps {
   position: string
   gallerySwiper: any
   activeIndex: number
+  thumbnailAspectRatio: string
+  thumbnailMaxHeight: number
 }
 
 const Thumbnail = ({
-  itemContainerClasses,
-  gallerySwiper,
   alt,
-  thumbUrl,
-  height,
   index,
+  height,
+  thumbUrl,
+  handles,
+  gallerySwiper,
+  maxHeight = 150,
+  aspectRatio = 'auto',
+  itemContainerClasses,
 }: ThumbnailProps) => {
-  const handles = useCssHandles(CSS_HANDLES)
   return (
     <div
       className={itemContainerClasses}
-      style={{ height }}
-      onClick={() => gallerySwiper && gallerySwiper.slideTo(index)}>
+      style={{ height, maxHeight: maxHeight || 'unset' }}
+      onClick={() => gallerySwiper && gallerySwiper.slideTo(index)}
+    >
       <figure
-        className={styles.figure}
+        className={handles.figure}
         itemProp="associatedMedia"
         itemScope
-        itemType="http://schema.org/ImageObject">
+        itemType="http://schema.org/ImageObject"
+      >
         <img
-          className="w-100 h-auto db"
+          className={`${handles.thumbImg} w-100 h-auto db`}
           itemProp="thumbnail"
           alt={alt}
-          src={imageUrlForSize(thumbUrl, THUMB_SIZE)}
+          src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
         />
       </figure>
       <div
-        className={`absolute absolute--fill b--solid b--muted-2 bw1 ${handles.carouselThumbBorder}`}
+        className={`absolute absolute--fill b--solid b--muted-2 bw0 ${handles.carouselThumbBorder}`}
       />
     </div>
   )
@@ -94,38 +114,48 @@ const ThumbnailSwiper = ({
   position,
   gallerySwiper,
   activeIndex,
+  thumbnailAspectRatio,
+  thumbnailMaxHeight,
 }: ThumbnailSwiperProps) => {
   const hasThumbs = slides.length > 1
+  const handles = useCssHandles(CSS_HANDLES)
 
-  // const handles = useCssHandles(CSS_HANDLES)
-
-  const thumbClasses = classNames(`${styles.carouselGaleryThumbs} dn`, {
+  const thumbClasses = classNames(`${handles.carouselGaleryThumbs} dn h-auto`, {
     'db-ns': hasThumbs,
     mt3: !isThumbsVertical,
     'w-20 bottom-0 top-0 absolute': isThumbsVertical,
-    'left-0 pr5': isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
-    'right-0 pl5': isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
+    'left-0':
+      isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
+    'right-0':
+      isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
   })
 
   return (
     <div className={thumbClasses} data-testid="thumbnail-swiper">
-      <Swiper {...swiperParams} rebuildOnUpdate>
+      <Swiper {...swiperParams} shouldSwiperUpdate>
         {slides.map((slide, i) => {
-          const itemContainerClasses = classNames('swiper-slide mb5 pointer', {
-            'w-20': !isThumbsVertical,
-            'w-100': isThumbsVertical,
-            'swiper-slide-active': activeIndex === i,
-          })
+          const itemContainerClasses = classNames('swiper-slide mb5 pointer',
+            handles.productImagesThumb,
+            {
+              'w-20': !isThumbsVertical,
+              'w-100': isThumbsVertical,
+              'swiper-slide-active': activeIndex === i,
+              [handles.productImagesThumbActive]: activeIndex === i,
+            }
+          )
 
           return (
             <Thumbnail
               key={`${i}-${slide.alt}`}
               itemContainerClasses={itemContainerClasses}
               index={i}
+              handles={handles}
               height={isThumbsVertical ? 'auto' : '115px'}
               gallerySwiper={gallerySwiper}
               alt={slide.alt}
               thumbUrl={slide.thumbUrl || thumbUrls[i]}
+              aspectRatio={thumbnailAspectRatio}
+              maxHeight={thumbnailMaxHeight}
             />
           )
         })}
