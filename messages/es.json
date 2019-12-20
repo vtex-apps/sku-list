@@ -1,4 +1,5 @@
 {
+  "store/product-quantity.quantity": "Cantidad",
   "admin/test": "teste",
   "store/test": "teste"
 }
