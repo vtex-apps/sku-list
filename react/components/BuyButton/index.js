@@ -111,8 +111,6 @@ export const BuyButton = ({
   ])
   const orderFormItems = path(['orderForm', 'items'], orderFormContext)
 
-  console.log(orderFormItems)
-
   const resolveToastMessage = (success, isNewItem) => {
     if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
     if (!isNewItem) return translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)

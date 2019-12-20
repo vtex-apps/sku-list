@@ -11,6 +11,9 @@ interface State {
   isHovering: boolean
   isLoading: boolean
   selectedQuantity: number
+  buyButton: {
+    clicked: boolean
+  }
 }
 
 type Dispatch = (action: Action) => void
@@ -36,7 +39,16 @@ interface SetProductQuantity {
   }
 }
 
-type Action = SetHoverAction | SetLoadingAction | SetProductQuantity
+interface SetBuyButtonClicked {
+  type: 'SET_BUY_BUTTON_CLICKED'
+  args: { clicked: boolean }
+}
+
+type Action =
+  | SetHoverAction
+  | SetLoadingAction
+  | SetProductQuantity
+  | SetBuyButtonClicked
 
 export function reducer(state: State, action: Action) {
   switch (action.type) {
@@ -58,6 +70,16 @@ export function reducer(state: State, action: Action) {
         selectedQuantity: action.args.quantity,
       }
     }
+    case 'SET_BUY_BUTTON_CLICKED': {
+      const args = action.args || {}
+      return {
+        ...state,
+        buyButton: {
+          ...state.buyButton,
+          clicked: args.clicked,
+        },
+      }
+    }
     default:
       return state
   }
@@ -76,13 +98,18 @@ export const SkuProvider = ({ sku, product, children }: Props) => {
     isHovering: false,
     isLoading: false,
     selectedQuantity: 1,
+    buyButton: {
+      clicked: false,
+    },
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <SkuContext.Provider value={state}>
-      <SkuDispatchContext.Provider value={dispatch}>{children}</SkuDispatchContext.Provider>
+      <SkuDispatchContext.Provider value={dispatch}>
+        {children}
+      </SkuDispatchContext.Provider>
     </SkuContext.Provider>
   )
 }
