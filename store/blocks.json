@@ -7,7 +7,7 @@
   "sku-content": {
     "children": [
       "sku-name",
-      "sku-images",
+      "sku-image",
       "sku-seller",
       "sku-quantity-selector",
       "sku-buy-button",

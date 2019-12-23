@@ -12,7 +12,7 @@
       "flex-layout",
       "sku-name",
       "sku-seller",
-      "sku-images",
+      "sku-image",
       "sku-quantity-selector",
       "sku-buy-button",
       "sku-specifications"
@@ -21,8 +21,8 @@
   "sku-name": {
     "component": "SkuName"
   },
-  "sku-images": {
-    "component": "SkuImages"
+  "sku-image": {
+    "component": "SkuImage"
   },
   "sku-seller": {
     "component": "SkuSeller",
