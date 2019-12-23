@@ -1,3 +1,4 @@
 {
-  "store/product-quantity.quantity": "Quantity"
+  "store/product-quantity.quantity": "Quantity",
+  "store/specifications.title": "Specifications"
 }

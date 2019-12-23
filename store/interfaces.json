@@ -14,7 +14,8 @@
       "sku-seller",
       "sku-images",
       "sku-quantity-selector",
-      "sku-buy-button"
+      "sku-buy-button",
+      "sku-specifications"
     ]
   },
   "sku-name": {
@@ -59,5 +60,8 @@
     "allowed": [
       "item-buy-button"
     ]
+  },
+  "sku-specifications": {
+    "component": "SkuSpecifications"
   }
 }

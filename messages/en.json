@@ -1,5 +1,6 @@
 {
   "store/product-quantity.quantity": "Quantity",
+  "store/specifications.title": "Specifications",
   "admin/test": "test",
   "store/test": "test"
 }

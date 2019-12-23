@@ -10,7 +10,8 @@
       "sku-images",
       "sku-seller",
       "sku-quantity-selector",
-      "sku-buy-button"
+      "sku-buy-button",
+      "sku-specifications"
     ]
   },
   "sku-seller": {

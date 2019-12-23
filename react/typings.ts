@@ -22,6 +22,12 @@ export interface Item {
   images: Image[]
   sellers: Seller[]
   options?: BuyButtonItemOption[]
+  variations: Variation[]
+}
+
+export interface Variation {
+  name: string
+  values: string[]
 }
 
 export interface LineItem {
@@ -362,3 +368,16 @@ export interface OrderFormArgs {
     quantity: number
   }[]
 }
+
+export enum InitialSelectionType {
+  complete = 'complete',
+  image = 'image',
+  empty = 'empty',
+}
+
+export enum DisplayMode {
+  select = 'select',
+  default = 'default',
+}
+
+export type Variations = Record<string, string[]>
