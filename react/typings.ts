@@ -58,6 +58,15 @@ export interface CommercialOffer {
   PriceWithoutDiscount: number
   RewardValue: number
   AvailableQuantity: number
+  Installments: Installment[]
+}
+
+export interface Installment {
+  Value: number
+  InterestRate: number
+  TotalValuePlusInterestRate: number
+  NumberOfInstallments: number
+  Name: string
 }
 
 export interface PriceBreaks {

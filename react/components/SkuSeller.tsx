@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Item, Product, Seller } from '../typings'
 import { SkuSellerProvider } from './SkuSellerContext'
 
@@ -6,7 +6,7 @@ interface Props {
   seller: Seller
   item: Item
   product: Product
-  children?: any[]
+  children?: ReactNode[]
 }
 
 const SkuSeller = ({ seller, item, product, children }: Props) => {
