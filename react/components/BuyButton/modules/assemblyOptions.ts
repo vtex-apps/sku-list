@@ -1,16 +1,11 @@
-import {
-  AssemblyOptionItem,
-  CartAddedOption,
-  CartRemovedOption,
-  GroupId,
-  InputValue,
-  Option,
-  ParsedAssemblyOptions,
-} from '../../typings'
+import { AssemblyOptionItem } from '../../../typings'
 
-export const sumAssembliesPrice = (
+type GroupId = string
+type GroupTypes = 'SINGLE' | 'TOGGLE' | 'MULTIPLE'
+
+export function sumAssembliesPrice(
   assemblyOptions: Record<GroupId, AssemblyOptionItem[]>
-) => {
+) {
   const cleanAssemblies = assemblyOptions || {}
   const assembliesGroupItems = Object.values(cleanAssemblies)
   return assembliesGroupItems.reduce<number>(
@@ -28,12 +23,64 @@ export const sumAssembliesPrice = (
   )
 }
 
-export const transformAssemblyOptions = (
+type InputValue = Record<string, string | boolean>
+
+export interface AssemblyOptions {
+  items: Record<GroupId, AssemblyOptionItem[]>
+  inputValues: Record<GroupId, InputValue>
+  areGroupsValid: Record<string, boolean>
+}
+
+export type Option = ItemOption
+
+export interface ItemOption {
+  assemblyId: string
+  id?: string
+  quantity?: number
+  seller?: string
+  options?: Option[]
+  inputValues?: InputValue
+}
+
+interface AddedItem {
+  id: string
+  name: string
+  quantity: number
+  sellingPrice: number
+  sellingPriceWithAssemblies: number
+  assemblyOptions?: ParsedAssemblyOptionsMeta
+}
+
+interface CartAddedOption {
+  normalizedQuantity: number
+  extraQuantity: number
+  choiceType: GroupTypes
+  item: AddedItem
+}
+
+interface CartRemovedOption {
+  name: string
+  initialQuantity: number
+  removedQuantity: number
+}
+
+export interface ParsedAssemblyOptionsMeta {
+  added: CartAddedOption[]
+  removed: CartRemovedOption[]
+  parentPrice: number
+}
+
+interface ParsedAssemblyOptions {
+  options: Option[]
+  assemblyOptions: ParsedAssemblyOptionsMeta
+}
+
+export function transformAssemblyOptions(
   assemblyOptionsItems: Record<GroupId, AssemblyOptionItem[]> = {},
   inputValues: Record<GroupId, InputValue> = {},
   parentPrice: number,
   parentQuantity: number
-): ParsedAssemblyOptions => {
+): ParsedAssemblyOptions {
   // contains options sent as arguments to graphql mutation
   const options: Option[] = []
 

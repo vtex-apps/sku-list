@@ -220,14 +220,6 @@ export interface MiniCartItem {
   sellingPriceWithAssemblies: number
 }
 
-export interface CatalogItem {
-  product: Product
-  selectedItem: Item
-  selectedQuantity: number
-  selectedSeller: Seller
-  assemblyOptions: AssemblyOptions
-}
-
 export interface SkuSelector {
   isVisible: boolean
   areAllVariationsSelected: boolean
@@ -255,19 +247,6 @@ export interface Address {
   userId?: string
 }
 
-export interface OrderForm {
-  orderFormId?: string
-  value?: number
-  items?: any[]
-  customData: {
-    customApps: CustomApp[]
-  }
-  shippingData: {
-    address: Address
-    availableAddresses: any[]
-  }
-}
-
 export interface AddItemResponse {
   data: {
     addItem: {
@@ -292,7 +271,7 @@ export interface OrderFormContext {
   updateAndRefetchOrderForm: () => void
   updateToastMessage: () => void
   updateOrderFormShipping: () => void
-  orderForm: OrderForm
+  orderForm: OrderFormArgs
 }
 
 export interface TooltipArgs {
@@ -361,12 +340,20 @@ export interface ToastMessageArgs {
 
 export interface OrderFormArgs {
   orderFormId?: string
+  value?: number
   items: {
     id: string
     seller: string | number
     options: Option[]
     quantity: number
   }[]
+  customData: {
+    customApps: CustomApp[]
+  }
+  shippingData: {
+    address: Address
+    availableAddresses: any[]
+  }
 }
 
 export enum InitialSelectionType {
@@ -381,3 +368,43 @@ export enum DisplayMode {
 }
 
 export type Variations = Record<string, string[]>
+
+export type Maybe<T> = T | null | undefined
+
+export interface BuyButtonContextState {
+  clicked: boolean
+}
+
+export interface ProductContextState {
+  selectedItem: Maybe<Item>
+  product: Maybe<Product>
+  selectedQuantity: number
+  skuSelector: {
+    isVisible: boolean
+    areAllVariationsSelected: boolean
+  }
+  buyButton: BuyButtonContextState
+  assemblyOptions: {
+    items: Record<string, AssemblyOptionItem[]>
+    inputValues: Record<string, InputValues>
+    areGroupsValid: Record<string, boolean>
+  }
+}
+
+export interface AssemblyOptionInput {
+  id?: string
+  quantity?: number
+  assemblyId: string
+  seller?: string
+  inputValues?: Record<string, string | boolean>
+  options?: AssemblyOptionInput[]
+}
+
+export interface OrderFormItemInput {
+  id?: number
+  index?: number
+  quantity?: number
+  seller?: string
+  uniqueId?: string
+  options?: AssemblyOptionInput[]
+}
