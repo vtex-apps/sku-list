@@ -6,5 +6,12 @@
   "store/add-to-cart.failure": "Something went wrong and the item was not added to your cart!",
   "store/add-to-cart.see-cart": "View cart",
   "store/add-to-cart.add-to-cart": "Add to cart",
-  "store/add-to-cart.select-sku-variations": "Please select an option of each variation"
+  "store/add-to-cart.select-sku-variations": "Please select an option of each variation",
+  "admin/editor.sku-list.highlights.title": "Sku Highlights",
+  "admin/editor.sku-list.highlights.description": "Sku Highlights Component",
+  "admin/editor.sku-list.highlights.default": "Choose Default Highlight",
+  "admin/editor.sku-list.highlights.allSpecifications": "All Specifications",
+  "admin/editor.sku-list.highlights.chooseDefaultSpecification": "Fields Specifications",
+  "admin/editor.sku-list.highlights.typeSpecifications.title": "Type specifications below",
+  "admin/editor.sku-list.highlights.showHighlight.title": "Show highlights"
 }

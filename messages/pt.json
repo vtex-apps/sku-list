@@ -7,6 +7,13 @@
   "store/add-to-cart.see-cart": "Ver carrinho",
   "store/add-to-cart.add-to-cart": "Adicionar ao carrinho",
   "store/add-to-cart.select-sku-variations": "Por favor selecione uma opção de cada variação",
+  "admin/editor.sku-list.highlights.title": "Destaques do item",
+  "admin/editor.sku-list.highlights.description": "Componente Destaques do Item",
+  "admin/editor.sku-list.highlights.default": "Escolha o destaque padrão",
+  "admin/editor.sku-list.highlights.allSpecifications": "Todas as especificações",
+  "admin/editor.sku-list.highlights.chooseDefaultSpecification": "Especificações personalizadas",
+  "admin/editor.sku-list.highlights.typeSpecifications.title": "Escreve as especificações abaixo",
+  "admin/editor.sku-list.highlights.showHighlight.title": "Mostrar destaques",
   "admin/test": "teste",
   "store/test": "teste"
 }

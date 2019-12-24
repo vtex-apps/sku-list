@@ -1,12 +1,13 @@
-import React, { useMemo, useState, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import HtmlParser from 'react-html-parser'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { Variations, InitialSelectionType, DisplayMode, Item, Variation } from '../typings'
+import { InitialSelectionType, DisplayMode, Item, Variation } from '../typings'
 import { useDevice } from 'vtex.device-detector'
 import { useSku } from './SkuContext'
 import GradientCollapse from 'vtex.store-components/GradientCollapse'
+import { toVariationArray, useVariations } from '../hooks/useVariations'
 
 const CSS_HANDLES = [
   'specificationsTableContainer',
@@ -19,40 +20,6 @@ const CSS_HANDLES = [
   'specificationItemProperty',
   'specificationItemSpecifications',
 ]
-
-const useVariations = (skuItems: Item[], shouldNotShow: boolean, visibleVariations?: string[]) => {
-  const result = useMemo(() => {
-    if (shouldNotShow || visibleVariations && visibleVariations.length === 0) {
-      return {}
-    }
-    const variations: Variations = {}
-    const variationsSet: Record<string, Set<string>> = {}
-    if (visibleVariations) {
-      visibleVariations = visibleVariations.map(variation => variation.toLowerCase().trim())
-    }
-
-    for (const skuItem of skuItems) {
-      for (const currentVariation of skuItem.variations) {
-        const { name, values } = currentVariation
-        if (!visibleVariations || visibleVariations.includes(name.toLowerCase().trim())) {
-
-          const value = values[0]
-          const currentSet = variationsSet[name] || new Set()
-          currentSet.add(value)
-          variationsSet[name] = currentSet
-        }
-      }
-    }
-    const variationsNames = Object.keys(variationsSet)
-    // Transform set back to array
-    for (const variationName of variationsNames) {
-      const set = variationsSet[variationName]
-      variations[variationName] = Array.from(set)
-    }
-    return variations
-  }, [skuItems, shouldNotShow])
-  return result
-}
 
 interface Props {
   skuItems: Item[]
@@ -99,15 +66,6 @@ const SKUSelectorWrapper: StorefrontFunctionComponent<Props> = props => {
 
   if (shouldNotShow || !skuSelected) {
     return null
-  }
-
-  const toVariationArray = (variations: Variations) => {
-    let result: Variation[] = []
-    const variationNames = Object.keys(variations)
-    for (const variationName of variationNames) {
-      result = [...result, { name: variationName, values: variations[variationName] }]
-    }
-    return result
   }
 
   const specifications: Variation[] = toVariationArray(variations)

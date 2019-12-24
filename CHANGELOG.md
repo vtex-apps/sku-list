@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added `sku-specifications`
 - Made `sku-content` a selector
 - Added `seller-price`
+- Added `sku-highlights`
 
 ### Changed
 - Changed SKU image carousel to new version
