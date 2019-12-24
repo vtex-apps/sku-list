@@ -15,7 +15,7 @@ const CSS_HANDLES = [
 
 interface Props {
   conditional: {
-    typeHighlight: string
+    typeSpecifications: string
     highlight: string
   }
   skuSelected: Item
