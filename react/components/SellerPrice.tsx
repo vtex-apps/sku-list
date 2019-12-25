@@ -5,7 +5,7 @@ import { useCssHandles } from 'vtex.css-handles'
 import { path } from 'ramda'
 import { FormattedCurrency } from 'vtex.format-currency'
 
-const CSS_HANDLES = ['priceContainer'] as const
+const CSS_HANDLES = ['sellerPriceContainer'] as const
 
 interface Props {
   seller: Seller
@@ -21,7 +21,7 @@ const SellerPrice = () => {
   const handles = useCssHandles(CSS_HANDLES)
 
   return seller ? (
-    <div className={handles.priceContainer}>
+    <div className={handles.sellerPriceContainer}>
       <span>
         <FormattedCurrency value={sellingPrice} />
       </span>

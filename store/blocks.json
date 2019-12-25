@@ -9,6 +9,7 @@
       "sku-name",
       "sku-image",
       "sku-seller",
+      "sku-price",
       "sku-quantity-selector",
       "sku-buy-button",
       "sku-specifications",
