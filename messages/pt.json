@@ -7,6 +7,7 @@
   "store/add-to-cart.see-cart": "Ver carrinho",
   "store/add-to-cart.add-to-cart": "Adicionar ao carrinho",
   "store/add-to-cart.select-sku-variations": "Por favor selecione uma opção de cada variação",
+  "store.sku-list.inventory.title": "Inventário",
   "admin/editor.sku-list.highlights.title": "Destaques do item",
   "admin/editor.sku-list.highlights.description": "Componente Destaques do Item",
   "admin/editor.sku-list.highlights.default": "Escolha o destaque padrão",

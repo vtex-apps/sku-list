@@ -14,6 +14,7 @@
       "sku-seller",
       "sku-image",
       "sku-price",
+      "sku-inventory",
       "sku-quantity-selector",
       "sku-buy-button",
       "sku-specifications",
@@ -25,6 +26,9 @@
   },
   "sku-price": {
     "component": "SkuPrice"
+  },
+  "sku-inventory": {
+    "component": "SkuInventory"
   },
   "sku-image": {
     "component": "SkuImage"

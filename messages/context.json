@@ -7,6 +7,7 @@
   "store/add-to-cart.see-cart": "View cart",
   "store/add-to-cart.add-to-cart": "Add to cart",
   "store/add-to-cart.select-sku-variations": "Please select an option of each variation",
+  "store.sku-list.inventory.title": "Inventory",
   "admin/editor.sku-list.highlights.title": "Sku Highlights",
   "admin/editor.sku-list.highlights.description": "Sku Highlights Component",
   "admin/editor.sku-list.highlights.default": "Choose Default Highlight",
