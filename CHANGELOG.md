@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added `sku-highlights`
 - Added `sku-price`
 - Added `sku-inventory`
+- Added `showLabel` to `sku-highlights`
 
 ### Changed
 - Changed SKU image carousel to new version

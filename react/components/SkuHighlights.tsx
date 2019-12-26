@@ -20,12 +20,13 @@ interface Props {
   }
   skuSelected: Item
   visibleVariations?: string[]
+  showLabel: boolean
 }
 
 const SkuHighlights = (props: Props) => {
 
   const valuesFromContext = useSku()
-  const { conditional } = props
+  const { conditional, showLabel } = props
   const skuSelected =
     props.skuSelected != null
       ? props.skuSelected
@@ -74,12 +75,12 @@ const SkuHighlights = (props: Props) => {
           data-value={item.values[0]}
           key={i}
         >
-          <span
+          {showLabel && (<span
             className={`${handles.highlightTitle} t-body c-on-base fw7 pr3 `}
           >
             {HtmlParser(item.name)}
             {': '}
-          </span>
+          </span>)}
           <span
             className={`${handles.highlightValue} t-body c-muted-1 lh-copy `}
           >
@@ -89,6 +90,10 @@ const SkuHighlights = (props: Props) => {
       ))}
     </div>
   )
+}
+
+SkuHighlights.defaultProps = {
+  showLabel: true,
 }
 
 SkuHighlights.schema = {
@@ -148,6 +153,12 @@ SkuHighlights.schema = {
       type: 'boolean',
       title: 'admin/editor.sku-list.highlights.showHighlight.title',
       default: false,
+      isLayout: false,
+    },
+    showLabel: {
+      type: 'boolean',
+      title: 'admin/editor.sku-list.highlights.showLabel.title',
+      default: true,
       isLayout: false,
     },
     conditional: {

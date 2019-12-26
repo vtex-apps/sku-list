@@ -15,6 +15,7 @@
   "admin/editor.sku-list.highlights.chooseDefaultSpecification": "Especificações personalizadas",
   "admin/editor.sku-list.highlights.typeSpecifications.title": "Escreve as especificações abaixo",
   "admin/editor.sku-list.highlights.showHighlight.title": "Mostrar destaques",
+  "admin/editor.sku-list.highlights.showLabel.title":  "Mostrar marcador",
   "admin/test": "teste",
   "store/test": "teste"
 }
