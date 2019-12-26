@@ -15,5 +15,8 @@
   "admin/editor.sku-list.highlights.chooseDefaultSpecification": "Fields Specifications",
   "admin/editor.sku-list.highlights.typeSpecifications.title": "Type specifications below",
   "admin/editor.sku-list.highlights.showHighlight.title": "Show highlights",
-  "admin/editor.sku-list.highlights.showLabel.title":  "Show label"
+  "admin/editor.sku-list.highlights.showLabel.title":  "Show label",
+  "admin/editor.sku-list.inventory.title": "SKU Inventory",
+  "admin/editor.sku-list.inventory.description": "SKU inventory component",
+  "admin/editor.sku-list.inventory.showLabel.title": "Show label"
 }

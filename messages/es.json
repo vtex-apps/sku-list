@@ -16,6 +16,9 @@
   "admin/editor.sku-list.highlights.typeSpecifications.title": "Escriva las especificaciones abajo",
   "admin/editor.sku-list.highlights.showHighlight.title": "Mostrar lo más destacados",
   "admin/editor.sku-list.highlights.showLabel.title":  "Mostrar etiqueta",
+  "admin/editor.sku-list.inventory.title": "Inventario de SKU",
+  "admin/editor.sku-list.inventory.description": "Componente de inventario de SKU",
+  "admin/editor.sku-list.inventory.showLabel.title": "Mostrar etiqueta",
   "admin/test": "teste",
   "store/test": "teste"
 }
