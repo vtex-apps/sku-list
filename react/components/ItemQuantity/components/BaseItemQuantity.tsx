@@ -19,6 +19,7 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
   productDispatch,
   skuDispatch,
   inputType,
+  showLabel,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
   const onChange = useCallback(
@@ -27,7 +28,7 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
       productDispatch({ type: 'SET_QUANTITY', args: { quantity: quantity } })
       skuDispatch({ type: 'SET_QUANTITY', args: { quantity: quantity } })
     },
-    [productDispatch, skuDispatch]
+    [inputType, productDispatch, skuDispatch]
   )
 
   const availableQuantity = pathOr(
@@ -43,9 +44,12 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
   return (
     <div
       className={`${handles.quantitySelectorContainer} flex flex-column mb4`}>
-      <div className={`${handles.quantitySelectorTitle} mb3 c-muted-2 t-body`}>
-        <FormattedMessage id="store/product-quantity.quantity" />
-      </div>
+      {showLabel && (
+        <div
+          className={`${handles.quantitySelectorTitle} mb3 c-muted-2 t-body`}>
+          <FormattedMessage id="store/product-quantity.quantity" />
+        </div>
+      )}
       <div className={handles.quantitySelectorStepper}>
         {inputType == 'number' ? (
           <Input
@@ -85,11 +89,13 @@ interface Props {
   skuDispatch: any
   productDispatch: any
   inputType: 'stepper' | 'number'
+  showLabel?: boolean
 }
 
 BaseItemQuantity.defaultProps = {
   warningQuantityThreshold: 0,
   inputType: 'stepper',
+  showLabel: true,
 }
 
 export default BaseItemQuantity

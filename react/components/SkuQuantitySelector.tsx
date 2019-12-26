@@ -14,7 +14,6 @@ const SkuQuantitySelector = () => {
 
   return (
     <div>
-      {/*<SKUSelector skuItems={[sku]} skuSelected={sku} />*/}
       <ExtensionPoint
         id="item-quantity"
         selectedItem={sku}

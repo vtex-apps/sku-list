@@ -24,6 +24,7 @@
   "admin/editor.sku-list.item-quantity.inputType.title": "Tipo de seletor de quantidade",
   "admin/editor.sku-list.item-quantity.inputType.stepper": "Stepper numérico",
   "admin/editor.sku-list.item-quantity.inputType.number": "Entrada de número",
+  "admin/editor.sku-list.item-quantity.showLabel.title": "Mostrar marcador",
   "admin/test": "teste",
   "store/test": "teste"
 }

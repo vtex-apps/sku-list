@@ -23,5 +23,6 @@
   "admin/editor.sku-list.item-quantity.description": "SKU quantity component",
   "admin/editor.sku-list.item-quantity.inputType.title": "Quantity selector type",
   "admin/editor.sku-list.item-quantity.inputType.stepper": "Numeric stepper",
-  "admin/editor.sku-list.item-quantity.inputType.number": "Number input"
+  "admin/editor.sku-list.item-quantity.inputType.number": "Number input",
+  "admin/editor.sku-list.item-quantity.showLabel.title":  "Show label"
 }

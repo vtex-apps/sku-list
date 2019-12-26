@@ -24,6 +24,7 @@
   "admin/editor.sku-list.item-quantity.inputType.title": "Tipo de selector de cantidad",
   "admin/editor.sku-list.item-quantity.inputType.stepper": "Paso a paso numérico",
   "admin/editor.sku-list.item-quantity.inputType.number": "Entrada de número",
+  "admin/editor.sku-list.item-quantity.showLabel.title": "Mostrar etiqueta",
   "admin/test": "teste",
   "store/test": "teste"
 }
