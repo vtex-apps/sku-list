@@ -3,6 +3,7 @@ import { NumericStepper } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'
 import { pathOr } from 'ramda'
 import { useCssHandles } from 'vtex.css-handles'
+import { Item } from '../../../typings'
 
 const CSS_HANDLES = [
   'quantitySelectorContainer',
@@ -15,14 +16,16 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
   warningQuantityThreshold = 0,
   selectedQuantity,
   selectedItem,
-  dispatch,
+  productDispatch,
+  skuDispatch,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
   const onChange = useCallback(
     e => {
-      dispatch({ type: 'SET_QUANTITY', args: { quantity: e.value } })
+      productDispatch({ type: 'SET_QUANTITY', args: { quantity: e.value } })
+      skuDispatch({ type: 'SET_QUANTITY', args: { quantity: e.value } })
     },
-    [dispatch]
+    [productDispatch, skuDispatch]
   )
 
   const availableQuantity = pathOr(
@@ -66,8 +69,9 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
 interface Props {
   warningQuantityThreshold: number
   selectedQuantity: number
-  selectedItem: any
-  dispatch: any
+  selectedItem: Item
+  skuDispatch: any
+  productDispatch: any
 }
 
 BaseItemQuantity.defaultProps = {
