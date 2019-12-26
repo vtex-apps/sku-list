@@ -20,7 +20,7 @@ const SkuInventory = () => {
     )
 
   return (
-    <div className={`${handles.inventoryContainer} lh-copy`}>
+    <div className={`${handles.inventoryContainer} t-body c-muted-1 lh-copy`}>
       <span className="bold">
         <FormattedMessage id="store.sku-list.inventory.title" />:{' '}
       </span>
