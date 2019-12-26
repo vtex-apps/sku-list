@@ -25,10 +25,15 @@ const SkuContent = ({ item, product, children }: Props) => {
     }
   }
   const containerClasses = classNames(
-    'ba b--muted-1 mb3 pa5',
+    'ba mb3 pa5',
     handles.skuContentWrapper,
     {
-      [handles.selectedSkuContentWrapper]: selectedItem.itemId == item.itemId,
+      [`bw1 b--muted-1 ${handles.selectedSkuContentWrapper}`]:
+        selectedItem.itemId != item.itemId,
+    },
+    {
+      [`bw1 b--blue ${handles.selectedSkuContentWrapper}`]:
+        selectedItem.itemId == item.itemId,
     }
   )
   return (

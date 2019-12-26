@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Changed SKU image carousel to new version
 - Showed a simple image for SKU image
+- Changed border color of selected item
 
 ### Fixed
 - Fixed `BuyButton` minicart event
