@@ -8,6 +8,7 @@ const ItemQuantity: StorefrontFunctionComponent<Props> = ({
   selectedItem,
   warningQuantityThreshold,
   selectedQuantity,
+  inputType,
 }) => {
   const skuDispatch = useSkuDispatch()
   const productDispatch = useProductDispatch()
@@ -18,6 +19,7 @@ const ItemQuantity: StorefrontFunctionComponent<Props> = ({
       selectedQuantity={selectedQuantity}
       skuDispatch={skuDispatch}
       productDispatch={productDispatch}
+      inputType={inputType}
     />
   )
 }
@@ -26,11 +28,32 @@ interface Props {
   warningQuantityThreshold: number
   selectedItem: Item
   selectedQuantity: number
+  inputType: 'stepper' | 'number'
 }
 
 ItemQuantity.schema = {
-  title: 'admin/editor.item-quantity.title',
-  description: 'admin/editor.item-quantity.description',
+  title: 'admin/editor.sku-list.item-quantity.title',
+  description: 'admin/editor.sku-list.item-quantity.description',
+  type: 'object',
+  properties: {
+    inputType: {
+      type: 'string',
+      title: 'admin/editor.sku-list.item-quantity.inputType.title',
+      enum: ['stepper', 'number'],
+      enumNames: [
+        'admin/editor.sku-list.item-quantity.inputType.stepper',
+        'admin/editor.sku-list.item-quantity.inputType.number',
+      ],
+      widget: {
+        'ui:options': {
+          inline: false,
+        },
+        'ui:widget': 'radio',
+      },
+      default: 'stepper',
+      isLayout: false,
+    },
+  },
 }
 
 export default ItemQuantity

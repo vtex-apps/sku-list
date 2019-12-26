@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { NumericStepper } from 'vtex.styleguide'
+import { Input, NumericStepper } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'
 import { pathOr } from 'ramda'
 import { useCssHandles } from 'vtex.css-handles'
@@ -18,12 +18,14 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
   selectedItem,
   productDispatch,
   skuDispatch,
+  inputType,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
   const onChange = useCallback(
     e => {
-      productDispatch({ type: 'SET_QUANTITY', args: { quantity: e.value } })
-      skuDispatch({ type: 'SET_QUANTITY', args: { quantity: e.value } })
+      const quantity = inputType == 'stepper' ? e.value : e.target.value
+      productDispatch({ type: 'SET_QUANTITY', args: { quantity: quantity } })
+      skuDispatch({ type: 'SET_QUANTITY', args: { quantity: quantity } })
     },
     [productDispatch, skuDispatch]
   )
@@ -45,13 +47,23 @@ const BaseItemQuantity: StorefrontFunctionComponent<Props> = ({
         <FormattedMessage id="store/product-quantity.quantity" />
       </div>
       <div className={handles.quantitySelectorStepper}>
-        <NumericStepper
-          size="small"
-          value={selectedQuantity}
-          minValue={1}
-          maxValue={availableQuantity ? availableQuantity : undefined}
-          onChange={onChange}
-        />
+        {inputType == 'number' ? (
+          <Input
+            type="number"
+            value={selectedQuantity}
+            min={1}
+            max={availableQuantity ? availableQuantity : undefined}
+            onChange={onChange}
+          />
+        ) : (
+          <NumericStepper
+            size="small"
+            value={selectedQuantity}
+            minValue={1}
+            maxValue={availableQuantity ? availableQuantity : undefined}
+            onChange={onChange}
+          />
+        )}
       </div>
       {showAvailable && (
         <div
@@ -72,10 +84,12 @@ interface Props {
   selectedItem: Item
   skuDispatch: any
   productDispatch: any
+  inputType: 'stepper' | 'number'
 }
 
 BaseItemQuantity.defaultProps = {
   warningQuantityThreshold: 0,
+  inputType: 'stepper',
 }
 
 export default BaseItemQuantity

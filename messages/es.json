@@ -19,6 +19,11 @@
   "admin/editor.sku-list.inventory.title": "Inventario de SKU",
   "admin/editor.sku-list.inventory.description": "Componente de inventario de SKU",
   "admin/editor.sku-list.inventory.showLabel.title": "Mostrar etiqueta",
+  "admin/editor.sku-list.item-quantity.title": "Cantidad de SKU",
+  "admin/editor.sku-list.item-quantity.description": "Componente de cantidad de SKU",
+  "admin/editor.sku-list.item-quantity.inputType.title": "Tipo de selector de cantidad",
+  "admin/editor.sku-list.item-quantity.inputType.stepper": "Paso a paso numérico",
+  "admin/editor.sku-list.item-quantity.inputType.number": "Entrada de número",
   "admin/test": "teste",
   "store/test": "teste"
 }

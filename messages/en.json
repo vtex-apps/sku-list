@@ -19,6 +19,11 @@
   "admin/editor.sku-list.inventory.title": "SKU Inventory",
   "admin/editor.sku-list.inventory.description": "SKU inventory component",
   "admin/editor.sku-list.inventory.showLabel.title": "Show label",
+  "admin/editor.sku-list.item-quantity.title": "SKU Quantity",
+  "admin/editor.sku-list.item-quantity.description": "SKU quantity component",
+  "admin/editor.sku-list.item-quantity.inputType.title": "Quantity selector type",
+  "admin/editor.sku-list.item-quantity.inputType.stepper": "Numeric stepper",
+  "admin/editor.sku-list.item-quantity.inputType.number": "Number input",
   "admin/test": "test",
   "store/test": "test"
 }
