@@ -66,9 +66,17 @@ const SkuHighlights = (props: Props) => {
     return []
   }
 
+  const highlights: Variation[] = getHighlights()
+
   return (
     <div className={`${handles.highlightContent} pt3 pb5`}>
-      {getHighlights().map((item: Variation, i: number) => (
+      {highlights.length == 0 ? <div className={`${handles.itemHighlight} pv2`}>
+        <span
+          className={`${handles.highlightValue} t-body c-muted-1 lh-copy `}
+        >
+          {'N/A'}
+          </span>
+      </div> : highlights.map((item: Variation, i: number) => (
         <div
           className={`${handles.itemHighlight} pv2`}
           data-name={item.name}
