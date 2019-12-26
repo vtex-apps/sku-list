@@ -16,7 +16,8 @@ const SkuPrice = () => {
   const handles = useCssHandles(CSS_HANDLES)
 
   return sellingPrice ? (
-    <div className={`t-body c-muted-1 lh-copy ${handles.priceContainer}`}>
+    <div
+      className={`pt3 pb5 t-body c-muted-1 lh-copy ${handles.priceContainer}`}>
       <span>
         <FormattedCurrency value={sellingPrice} />
       </span>
