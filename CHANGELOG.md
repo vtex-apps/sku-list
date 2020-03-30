@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.0] - 2020-03-30
+
 ### Added
+
 - Initial release
 - Added `sku-quantity-selector`
 - Added `sku-buy-button`
@@ -24,11 +27,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added `showLabel` to `item-quantity`
 
 ### Changed
+
 - Changed SKU image carousel to new version
 - Showed a simple image for SKU image
 - Changed border color of selected item
 
 ### Fixed
+
 - Fixed `BuyButton` minicart event
 - Fixed `item-quantity` product dispatch
 - Fixed font styling
