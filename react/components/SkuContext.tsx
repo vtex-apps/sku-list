@@ -11,23 +11,12 @@ interface State {
   isHovering: boolean
   isLoading: boolean
   selectedQuantity: number
+  buyButton: {
+    clicked: boolean
+  }
 }
 
 type Dispatch = (action: Action) => void
-
-// type SetProductAction = {
-//   type: 'SET_PRODUCT',
-//   args: {
-//     product: any
-//   }
-// }
-
-// type SetProductQueryAction = {
-//   type: 'SET_PRODUCT_QUERY',
-//   args: {
-//     query: string
-//   }
-// }
 
 interface SetHoverAction {
   type: 'SET_HOVER'
@@ -43,26 +32,26 @@ interface SetLoadingAction {
   }
 }
 
-// type SetProductQuantity = {
-//   type: 'SET_QUANTITY'
-//   args: {
-//     quantity: number
-//   }
-// }
+interface SetProductQuantity {
+  type: 'SET_QUANTITY'
+  args: {
+    quantity: number
+  }
+}
 
-type Action = SetHoverAction | SetLoadingAction
+interface SetBuyButtonClicked {
+  type: 'SET_BUY_BUTTON_CLICKED'
+  args: { clicked: boolean }
+}
+
+type Action =
+  | SetHoverAction
+  | SetLoadingAction
+  | SetProductQuantity
+  | SetBuyButtonClicked
 
 export function reducer(state: State, action: Action) {
   switch (action.type) {
-    // case 'SET_PRODUCT': {
-    //   const product = action.args.product
-    //   return {
-    //     ...state,
-    //     product: product,
-    //     //TODO: STOP USING PRODUCT.SKU https://app.clubhouse.io/vtex/story/18547/productsummarycontext-refactor
-    //     selectedItem: product.sku
-    //   }
-    // }
     case 'SET_HOVER': {
       return {
         ...state,
@@ -75,17 +64,22 @@ export function reducer(state: State, action: Action) {
         isLoading: action.args.isLoading,
       }
     }
-    // case 'SET_QUANTITY': {
-    //   return {
-    //     ...state,
-    //     selectedQuantity: action.args.quantity,
-    //   }
-    // }
-    // case 'SET_PRODUCT_QUERY':
-    //   return {
-    //     ...state,
-    //     query: action.args.query,
-    //   }
+    case 'SET_QUANTITY': {
+      return {
+        ...state,
+        selectedQuantity: action.args.quantity,
+      }
+    }
+    case 'SET_BUY_BUTTON_CLICKED': {
+      const args = action.args || {}
+      return {
+        ...state,
+        buyButton: {
+          ...state.buyButton,
+          clicked: args.clicked,
+        },
+      }
+    }
     default:
       return state
   }
@@ -104,13 +98,18 @@ export const SkuProvider = ({ sku, product, children }: Props) => {
     isHovering: false,
     isLoading: false,
     selectedQuantity: 1,
+    buyButton: {
+      clicked: false,
+    },
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <SkuContext.Provider value={state}>
-      <SkuDispatchContext.Provider value={dispatch}>{children}</SkuDispatchContext.Provider>
+      <SkuDispatchContext.Provider value={dispatch}>
+        {children}
+      </SkuDispatchContext.Provider>
     </SkuContext.Provider>
   )
 }

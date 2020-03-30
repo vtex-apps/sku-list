@@ -8,8 +8,8 @@
   "store/add-to-cart.add-to-cart": "Add to cart",
   "store/add-to-cart.select-sku-variations": "Please select an option of each variation",
   "store.sku-list.inventory.title": "Inventory",
-  "admin/editor.sku-list.highlights.title": "Item Highlights",
-  "admin/editor.sku-list.highlights.description": "Item Highlights Component",
+  "admin/editor.sku-list.highlights.title": "Sku Highlights",
+  "admin/editor.sku-list.highlights.description": "Sku Highlights Component",
   "admin/editor.sku-list.highlights.default": "Choose Default Highlight",
   "admin/editor.sku-list.highlights.allSpecifications": "All Specifications",
   "admin/editor.sku-list.highlights.chooseDefaultSpecification": "Fields Specifications",
@@ -24,7 +24,5 @@
   "admin/editor.sku-list.item-quantity.inputType.title": "Quantity selector type",
   "admin/editor.sku-list.item-quantity.inputType.stepper": "Numeric stepper",
   "admin/editor.sku-list.item-quantity.inputType.number": "Number input",
-  "admin/editor.sku-list.item-quantity.showLabel.title":  "Show label",
-  "admin/test": "test",
-  "store/test": "test"
+  "admin/editor.sku-list.item-quantity.showLabel.title":  "Show label"
 }

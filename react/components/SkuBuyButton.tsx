@@ -1,43 +1,33 @@
 import React from 'react'
-import { Item, Product, Seller } from '../typings'
+import { BuyButtonItem, Item } from '../typings'
 import { useSku } from './SkuContext'
 
-import BuyButton from 'vtex.store-components/BuyButton'
-
+import { ExtensionPoint } from 'vtex.render-runtime'
 import { path } from 'ramda'
-// import SKUSelector from 'vtex.store-components/SKUSelector'
-// import { ExtensionPoint } from 'vtex.render-runtime'
 
 interface Props {
   sku: Item
-  product: Product
   selectedQuantity: number
 }
 
 const SkuBuyButton = () => {
-  const { sku, product, selectedQuantity }: Props = useSku()
-
-  const isAvailable: boolean =
-    (path(
-      ['sellers', 0, 'commertialOffer', 'AvailableQuantity'],
-      sku
-    ) as number) > 0
-  const seller: Seller | undefined = path(['sellers', 0], sku)
-
-  const skuItems = BuyButton.mapCatalogItemToCart({
-    product,
-    selectedQuantity,
-    seller,
-    sku,
-  })
+  const { sku, selectedQuantity }: Props = useSku()
+  const buyButtonItem: BuyButtonItem = {
+    skuId: sku.itemId,
+    seller: path<string | number>(['sellers', 0, 'sellerId'], sku),
+    options: sku.options || [],
+    quantity: selectedQuantity,
+  }
 
   return (
     <div>
-      {/*<ExtensionPoint id="sku-selector" skuItems={[sku]} skuSelected={sku} />*/}
-      <BuyButton
-        skuItems={skuItems}
-        available={isAvailable}
-        skuSelected={sku}
+      <ExtensionPoint
+        id="item-buy-button"
+        selectedItem={sku}
+        selectedQuantity={selectedQuantity}
+        skuItems={[buyButtonItem]}
+        isOneClickBuy={false}
+        shouldAddToCart
       />
     </div>
   )

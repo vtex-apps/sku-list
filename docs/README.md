@@ -1,6 +1,6 @@
-# Challenge Trade Policy Condition
+# SKU List for Product Details
 
-> Challenge that checks if an user can access the current Trade Policy based on a specified condition rule.
+> A list of SKUs.
 
 ## Usage
 
@@ -11,39 +11,114 @@ Add this app to your theme dependencies:
 // ...
   "dependencies": {
     // ...
-    "vtex.challenge-tp-condition": "0.x"
+    "vtex.sku-list": "0.x"
   }
 ```
 
-Add the block `challenge.trade-policy-condition` to all pages that you want to protect as a `parent` component.
+Add the block `sku-list` to `store.product`.
 
 Example:
 
 ```diff
- "store.home": {
-   "blocks": [
-     "shelf#home",
-     "flex-layout.row#deals",
-     "info-card#home",
-     "rich-text#question",
-     "rich-text#link",
-     "newsletter"
-   ],
-+   "parent": {
-+     "challenge": "challenge.trade-policy-condition"
-+   }
- },
+ {
+   "store.product": {
+     "children": [
+       "flex-layout.row#product-breadcrumb",
+       "flex-layout.row#product-main",
+       "flex-layout.row#description",
++      "sku-list#default",
+       "shelf.relatedProducts",
+       "product-reviews",
+       "product-questions-and-answers"
+     ]
+   },
++  "sku-list#default": {
++    "blocks": [
++      "sku-content#default"
++    ]
++  },
++  "sku-content#default": {
++    "children": [
++      "sku-name",
++      "sku-image",
++      "sku-quantity-selector",
++      "sku-buy-button",
++      "sku-seller",
++      "sku-specifications"
++    ]
++  },
++  "sku-seller": {
++    "children": [
++      "flex-layout.row#name-and-inventory"
++    ]
++  },
++  "flex-layout.row#name-and-inventory": {
++    "children": [
++      "seller-name",
++      "seller-inventory",
++      "seller-price"
++    ]
++  },
+   "flex-layout.row#product-breadcrumb": {
+     "props": {
+       "marginTop": 4
 ```
 
 This component will check if the logged in user has all conditions rules specified in the Trade Policy configuration. If not the user will be redirected to `/login`. If allowed, it will render the page.
 
-## API
+## Customization
 
-`challenge.trade-policy-condition` has some props that can be set.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Prop name                | Default value | Possible values       | Description                                                                |
-| ------------------------ | ------------- | --------------------- | -------------------------------------------------------------------------- |
-| redirectPath             | `/login`      | (anything)            | Path which the user will be redirected if not allowed                      |
-| defaultContentVisibility | `visible`     | `visible` or `hidden` | Should the content be visible or hidden while checking the user condition? |
-
-> _Important:_ Using `hidden` will make all the page content be rendered on the client, that is, the page will not be Server Side Rendered (SSR). That is due to the fact that this check is user-based, making it impossible to cache.
+| CSS Handles |
+| --- |
+| `sellerInventoryWrapper` |
+| `sellerInventory` |
+| `sellerName` |
+| `productPriceBreaksContainer` |
+| `productPriceTable` |
+| `colGroupQuantityBreak` |
+| `colGroupUnitPrice` |
+| `colGroupLeadTime` |
+| `productPriceTableMainHeader` |
+| `productPricingTableTitle` |
+| `productPriceTableHeader` |
+| `productPriceTableHeaderRow` |
+| `productPriceTableHeaderRowData` |
+| `productPriceTableRow` |
+| `productPriceQuantityDataColumn` |
+| `productPriceTableQuantities` |
+| `productPriceTablePriceColumn` |
+| `productPriceTableLeadTimeColumn` |
+| `productPriceTableFooterRow` |
+| `productPriceTableFooterMultipleColumn` |
+| `productPriceBreaksContainer` |
+| `buyButtonText` |
+| `buttonDataContainer` |
+| `buttonItemsPrice` |
+| `buyButtonContainer` |
+| `buyButtonText` |
+| `skuContentWrapper` |
+| `selectedSkuContentWrapper` |
+| `skuImage` |
+| `skuName` |
+| `specificationsTableContainer` |
+| `specificationsTabsContainer` |
+| `specificationsTitle` |
+| `specificationsTable` |
+| `specificationsTablePropertyHeading` |
+| `specificationsTableSpecificationHeading` |
+| `specificationItemProperty` |
+| `specificationItemSpecifications` |
+| `quantitySelectorContainer` |
+| `quantitySelectorTitle` |
+| `quantitySelectorStepper` |
+| `availableQuantityContainer` |
+| `highlightContent` |
+| `itemHighlight` |
+| `highlightTitle` |
+| `highlightValue` |
+| `priceContainer` |
+| `sellerPriceContainer` |
+| `inventoryContainer` |
+| `inventory` |

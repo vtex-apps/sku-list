@@ -7,10 +7,14 @@
   "sku-content": {
     "children": [
       "sku-name",
-      "sku-images",
+      "sku-image",
       "sku-seller",
+      "sku-price",
+      "sku-inventory",
+      "sku-quantity-selector",
       "sku-buy-button",
-      "sku-quantity-selector"
+      "sku-specifications",
+      "sku-highlights"
     ]
   },
   "sku-seller": {
@@ -20,9 +24,14 @@
       "seller-price"
     ]
   },
+  "sku-quantity-selector": {
+    "blocks": [
+      "item-quantity"
+    ]
+  },
   "sku-buy-button": {
     "blocks": [
-      "sku-selector"
+      "item-buy-button"
     ]
   }
 }

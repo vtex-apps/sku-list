@@ -3,6 +3,7 @@ import { useSkuSeller } from './SkuSellerContext'
 import { Seller } from '../typings'
 import { useCssHandles } from 'vtex.css-handles'
 import { path } from 'ramda'
+import { FormattedMessage } from 'react-intl'
 
 const CSS_HANDLES = ['sellerInventoryWrapper', 'sellerInventory'] as const
 
@@ -15,7 +16,9 @@ const SellerInventory = () => {
   const handles = useCssHandles(CSS_HANDLES)
   return seller ? (
     <div className={`${handles.sellerInventoryWrapper} lh-copy`}>
-      <span className="bold">Inventory: </span>
+      <span className="bold">
+        <FormattedMessage id="store.sku-list.inventory.title" />:{' '}
+      </span>
       <span className={`${handles.sellerInventory}`}>
         {path(['commertialOffer', 'AvailableQuantity'], seller)}
       </span>

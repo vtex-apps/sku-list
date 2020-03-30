@@ -12,17 +12,26 @@
       "flex-layout",
       "sku-name",
       "sku-seller",
-      "sku-images",
+      "sku-image",
+      "sku-price",
+      "sku-inventory",
       "sku-quantity-selector",
       "sku-buy-button",
-      "sku-selector"
+      "sku-specifications",
+      "sku-highlights"
     ]
   },
   "sku-name": {
     "component": "SkuName"
   },
-  "sku-images": {
-    "component": "SkuImages"
+  "sku-price": {
+    "component": "SkuPrice"
+  },
+  "sku-inventory": {
+    "component": "SkuInventory"
+  },
+  "sku-image": {
+    "component": "SkuImage"
   },
   "sku-seller": {
     "component": "SkuSeller",
@@ -43,13 +52,28 @@
   "seller-price": {
     "component": "SellerPrice"
   },
+  "item-quantity": {
+    "component": "ItemQuantity"
+  },
+  "sku-quantity-selector": {
+    "component": "SkuQuantitySelector",
+    "allowed": [
+      "item-quantity"
+    ]
+  },
+  "item-buy-button": {
+    "component": "BuyButton"
+  },
   "sku-buy-button": {
     "component": "SkuBuyButton",
     "allowed": [
-      "sku-selector"
+      "item-buy-button"
     ]
   },
-  "sku-quantity-selector": {
-    "component": "SkuQuantitySelector"
+  "sku-specifications": {
+    "component": "SkuSpecifications"
+  },
+  "sku-highlights": {
+    "component": "SkuHighlights"
   }
 }
