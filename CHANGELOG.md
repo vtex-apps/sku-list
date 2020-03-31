@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- Removed price breaks
+
 ## [1.0.1] - 2020-03-31
 
 ### Fixed
