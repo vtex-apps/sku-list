@@ -8,17 +8,19 @@ import { FormattedMessage } from 'react-intl'
 const CSS_HANDLES = ['sellerInventoryWrapper', 'sellerInventory'] as const
 
 interface Props {
-  seller: Seller
+  showLabel: boolean
 }
 
-const SellerInventory = () => {
-  const { seller }: Props = useSkuSeller()
+const SellerInventory = ({ showLabel }: Props) => {
+  const { seller }: { seller: Seller } = useSkuSeller()
   const handles = useCssHandles(CSS_HANDLES)
   return seller ? (
     <div className={`${handles.sellerInventoryWrapper} lh-copy`}>
-      <span className="bold">
-        <FormattedMessage id="store.sku-list.inventory.title" />:{' '}
-      </span>
+      {showLabel && (
+        <span className="t-body c-on-base fw7 pr3">
+          <FormattedMessage id="store/sku-list.inventory.title" />:{' '}
+        </span>
+      )}
       <span className={`${handles.sellerInventory}`}>
         {path(['commertialOffer', 'AvailableQuantity'], seller)}
       </span>
