@@ -52,17 +52,26 @@ Example:
 +    "children": [
 +      "product-images",
 +      "flex-layout.col#sku-list"
-+    ]
++    ],
++    "props": {
++      "preventHorizontalStretch": false
++    }
 +  },
 +  "flex-layout.col#sku-list": {
 +    "children": [
 +      "flex-layout.row#sku-list-header",
-+      "sku-list#default"
-+    ]
++      "sku-list"
++    ],
++    "props": {
++      "preventVerticalStretch": true,
++      "width": "60%",
++      "blockClass": "skuList"
++    }
 +  },
 +  "flex-layout.row#sku-list-header": {
 +    "props": {
-+      "preventHorizontalStretch": false
++      "preventHorizontalStretch": false,
++      "blockClass": "skuListHeader"
 +    },
 +    "children": [
 +      "rich-text#certificates",
@@ -107,17 +116,18 @@ Example:
 +      "width": "20%"
 +    }
 +  },
-+  "sku-list#default": {
++  "sku-list": {
 +    "blocks": [
-+      "sku-content#default"
++      "sku-content.desktop",
++      "sku-content.mobile"
 +    ]
 +  },
-+  "sku-content#default": {
++  "sku-content.desktop": {
 +    "children": [
-+      "flex-layout.row#item-main"
++      "flex-layout.row#item-main-desktop"
 +    ]
 +  },
-+  "flex-layout.row#item-main": {
++  "flex-layout.row#item-main-desktop": {
 +    "props": {
 +      "preventHorizontalStretch": false
 +    },
@@ -197,9 +207,140 @@ Example:
 +      "sku-quantity-selector"
 +    ]
 +  },
++
++
++
++  "sku-content.mobile": {
++    "children": [
++      "flex-layout.row#item-main-mobile"
++    ]
++  },
++  "flex-layout.row#item-main-mobile": {
++    "props": {
++      "preventHorizontalStretch": false
++    },
++    "children": [
++      "flex-layout.col#sku-highlight-certificates-mobile",
++      "flex-layout.col#sku-highlight-expiry-date-mobile",
++      "flex-layout.col#sku-inventory-mobile",
++      "flex-layout.col#sku-price-mobile",
++      "flex-layout.col#sku-quantity-selector-mobile"
++    ]
++  },
++  "flex-layout.col#sku-highlight-certificates-mobile": {
++    "props": {
++      "width": "20%"
++    },
++    "children": [
++      "sku-highlights#certificates-mobile"
++    ]
++  },
++  "sku-highlights#certificates-mobile": {
++    "props": {
++      "conditional": {
++        "highlight": "admin/editor.sku-list.highlights.chooseDefaultSpecification",
++        "typeSpecifications": "Has Certificates"
++      },
++      "showLabel": true
++    }
++  },
++  "flex-layout.col#sku-highlight-expiry-date-mobile": {
++    "props": {
++      "width": "20%"
++    },
++    "children": [
++      "sku-highlights#expiry-date-mobile"
++    ]
++  },
++  "sku-highlights#expiry-date-mobile": {
++    "props": {
++      "conditional": {
++        "highlight": "admin/editor.sku-list.highlights.chooseDefaultSpecification",
++        "typeSpecifications": "Expiry Date"
++      },
++      "showLabel": true
++    }
++  },
++  "flex-layout.col#sku-inventory-mobile": {
++    "props": {
++      "width": "20%"
++    },
++    "children": [
++      "sku-inventory#default-mobile"
++    ]
++  },
++  "sku-inventory#default-mobile": {
++    "props": {
++      "showLabel": true
++    }
++  },
++  "sku-seller#inventory-mobile": {
++    "children": [
++      "seller-inventory#mobile"
++    ]
++  },
++  "seller-inventory#mobile": {
++    "props": {
++      "showLabel": true
++    }
++  },
++  "flex-layout.col#sku-price-mobile": {
++    "props": {
++      "width": "20%"
++    },
++    "children": [
++      "sku-price#mobile"
++    ]
++  },
++  "sku-price#mobile": {
++    "props": {
++      "showLabel": true
++    }
++  },
++  "flex-layout.col#sku-quantity-selector-mobile": {
++    "props": {
++      "width": "20%"
++    },
++    "children": [
++      "sku-quantity-selector"
++    ]
++  },
++  "sku-quantity-selector#mobile": {
++    "props": {
++      "showLabel": true
++    }
++  },
++
++
    "flex-layout.row#product-breadcrumb": {
      "props": {
        "marginTop": 4
+@@ -61,7 +326,8 @@
+   },
+   "product-images": {
+     "props": {
+-      "displayThumbnailsArrows": true
++      "displayThumbnailsArrows": true,
++      "width": "40%"
+     }
+   },
+   "flex-layout.col#right-col": {
+```
+
+Hide the headings in mobile layout.
+
+```css
+// styles/css/vtex.flex-layout.css
+// ...
+.flexRow--skuListHeader {
+  display: none;
+}
+
+@media only screen and (min-width: 40em) {
+  .flexRow--skuListHeader {
+    display: flex;
+  }
+}
 ```
 
 This component will check if the logged in user has all conditions rules specified in the Trade Policy configuration. If not the user will be redirected to `/login`. If allowed, it will render the page.

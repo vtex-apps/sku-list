@@ -1,9 +1,7 @@
 {
   "sku-list": {
     "component": "SkuList",
-    "required": [
-      "sku-content"
-    ]
+    "allowed": ["sku-content.desktop", "sku-content.mobile"]
   },
   "sku-content": {
     "component": "SkuContent",
@@ -20,6 +18,12 @@
       "sku-specifications",
       "sku-highlights"
     ]
+  },
+  "sku-content.desktop": {
+    "device": "desktop"
+  },
+  "sku-content.mobile": {
+    "device": "mobile"
   },
   "sku-name": {
     "component": "SkuName"
@@ -57,18 +61,14 @@
   },
   "sku-quantity-selector": {
     "component": "SkuQuantitySelector",
-    "allowed": [
-      "item-quantity"
-    ]
+    "allowed": ["item-quantity"]
   },
   "item-buy-button": {
     "component": "BuyButton"
   },
   "sku-buy-button": {
     "component": "SkuBuyButton",
-    "allowed": [
-      "item-buy-button"
-    ]
+    "allowed": ["item-buy-button"]
   },
   "sku-specifications": {
     "component": "SkuSpecifications"

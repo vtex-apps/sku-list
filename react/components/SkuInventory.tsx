@@ -27,8 +27,8 @@ const SkuInventory = ({ showLabel }: Props) => {
     <div
       className={`pt3 pb5 t-body c-muted-1 lh-copy ${handles.inventoryContainer}`}>
       {showLabel && (
-        <span className="bold">
-          <FormattedMessage id="store.sku-list.inventory.title" />:{' '}
+        <span className="t-body c-on-base fw7 pr3">
+          <FormattedMessage id="store/sku-list.inventory.title" />:{' '}
         </span>
       )}
       <span className={`${handles.inventory}`}>{inventory}</span>
