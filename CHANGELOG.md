@@ -7,28 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.3] - 2020-04-02
-
-### Fixed
-
-- Added support for mobile layout
-
-## [1.0.2] - 2020-03-31
-
-### Removed
-
-- Removed price breaks
-
-## [1.0.1] - 2020-03-31
-
-### Fixed
-
-- Fixed README
-
-## [1.0.0] - 2020-03-30
-
 ### Added
-
+- Added support for mobile layout
+- Removed price breaks
 - Initial release
 - Added `sku-quantity-selector`
 - Added `sku-buy-button`

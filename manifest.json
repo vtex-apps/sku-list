@@ -1,8 +1,8 @@
 {
   "vendor": "vtex",
   "name": "sku-list",
-  "version": "1.0.3",
-  "title": "Challenge",
+  "version": "1.0.0",
+  "title": "VTEX SKU List for B2B stores",
   "description": "",
   "builders": {
     "react": "3.x",
@@ -29,7 +29,9 @@
     "vtex.pixel-manager": "1.x",
     "vtex.format-currency": "0.x"
   },
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
