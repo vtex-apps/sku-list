@@ -1,6 +1,6 @@
 # SKU List for Product Details
 
-> A list of SKUs.
+> A component that renderes the list of SKUs of a product!
 
 ## Usage
 
@@ -11,21 +11,7 @@ Add this app to your theme dependencies:
 // ...
   "dependencies": {
     // ...
-    "vtex.sku-list": "0.x"
-  }
-```
-
-Allow `sku-list` block in your version of `store.product` block.
-
-```js
-// store/interfaces.json
-// ...
-  {
-    "store.product.custom": {
-      "allowed": [
-        "sku-list"
-      ]
-    }
+    "vtex.sku-list": "1.x"
   }
 ```
 
