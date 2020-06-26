@@ -1,28 +1,54 @@
-# SKU List for Product Details
+📢 Use this project, [contribute](https://github.com/vtex-apps/sku-list) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-> A component that renderes the list of SKUs of a product!
+# SKU List 
 
-## Usage
+<!-- DOCS-IGNORE:start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- DOCS-IGNORE:end -->
 
-Add this app to your theme dependencies:
+The SKU List app is an essential B2B feature responsible for rendering a SKU list in the product details page.
 
-```js
-// manifest.json
-// ...
+![sku-list](https://user-images.githubusercontent.com/52087100/85888338-c762d100-b7bf-11ea-9ca0-c808ef9641ea.png)
+
+## Configuration
+
+1. Add the `vtex.sku-list` app to your theme's dependencies in the `manifest.json`, for example:
+
+```diff
   "dependencies": {
-    // ...
-    "vtex.sku-list": "1.x"
++   "vtex.sku-list": "1.x"
   }
 ```
 
-Add the block `sku-list` to `store.product`.
+Now, you are able to use all blocks exported by the `sku-list` app. Check out the full list below:
 
-Example:
+| Block name     | Description                                     |
+| -------------- | ----------------------------------------------- |
+| `sku-list` | Top level block in which you will declare as `children` the SKU List layout blocks according to devices (`sku-content.desktop` and the `sku-content.mobile` blocks).   |
+| `sku-content.desktop` | Defines the SKU List layout for desktop devices. |
+| `sku-content.mobile` | Defines the SKU List layout for mobile devices. |
+| `sku-name`  | Renders the SKU name. | 
+| `sku-image` | Renders the SKU image. | 
+| `sku-seller` | Renders the SKU sellers (if it has any). It uses the `seller-name`, `seller-inventory` and `seller-price` blocks as children in order to display seller data. | 
+| `seller-name` | Renders the SKU seller name. |  
+| `seller-inventory` | Renders the SKU inventory per seller. |
+| `seller-price` | Renders the SKU price per seller. | 
+| `sku-price` | Renders the SKU price. | 
+| `sku-inventory` | Renders the SKU inventory. | 
+| `sku-quantity-selector` | Renders a quantity selector. | 
+| `item-quantity` | Renders the SKU inventory. | 
+| `sku-buy-button` | Renders a Buy Button to add a given SKU to the minicart. | 
+| `item-buy-button` | Renders a Buy Button to add a given Product to the minicart. | 
+| `sku-specifications` | Renders the SKU specifications. | 
+| `sku-highlights` | Renders a highlight disclaimer for a specific SKU. | 
+
+2. In the product template (`store.product`), use the following block structure in order to rebuild the Product Details Page now including the `sku-list` blocks:
 
 ```diff
 {
--  "store.product": {
-+  "store.product.custom": {
+   "store.product": {
      "children": [
        "flex-layout.row#product-breadcrumb",
 -      "flex-layout.row#product-main",
@@ -193,9 +219,6 @@ Example:
 +      "sku-quantity-selector"
 +    ]
 +  },
-+
-+
-+
 +  "sku-content.mobile": {
 +    "children": [
 +      "flex-layout.row#item-main-mobile"
@@ -296,92 +319,78 @@ Example:
 +      "showLabel": true
 +    }
 +  },
-+
-+
-   "flex-layout.row#product-breadcrumb": {
-     "props": {
-       "marginTop": 4
-@@ -61,7 +326,8 @@
-   },
-   "product-images": {
-     "props": {
--      "displayThumbnailsArrows": true
-+      "displayThumbnailsArrows": true,
-+      "width": "40%"
-     }
-   },
-   "flex-layout.col#right-col": {
-```
-
-Hide the headings in mobile layout.
-
-```css
-// styles/css/vtex.flex-layout.css
-// ...
-.flexRow--skuListHeader {
-  display: none;
-}
-
-@media only screen and (min-width: 40em) {
-  .flexRow--skuListHeader {
-    display: flex;
-  }
-}
 ```
 
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles                               |
-| ----------------------------------------- |
-| `sellerInventoryWrapper`                  |
-| `sellerInventory`                         |
-| `sellerName`                              |
-| `productPriceBreaksContainer`             |
-| `productPriceTable`                       |
-| `colGroupQuantityBreak`                   |
-| `colGroupUnitPrice`                       |
-| `colGroupLeadTime`                        |
-| `productPriceTableMainHeader`             |
-| `productPricingTableTitle`                |
-| `productPriceTableHeader`                 |
-| `productPriceTableHeaderRow`              |
-| `productPriceTableHeaderRowData`          |
-| `productPriceTableRow`                    |
-| `productPriceQuantityDataColumn`          |
-| `productPriceTableQuantities`             |
-| `productPriceTablePriceColumn`            |
-| `productPriceTableLeadTimeColumn`         |
-| `productPriceTableFooterRow`              |
-| `productPriceTableFooterMultipleColumn`   |
-| `productPriceBreaksContainer`             |
-| `buyButtonText`                           |
+| CSS Handles | 
+| ----------------------------------------- | 
+| `availableQuantityContainer`              |
 | `buttonDataContainer`                     |
 | `buttonItemsPrice`                        |
 | `buyButtonContainer`                      |
 | `buyButtonText`                           |
-| `skuContentWrapper`                       |
-| `selectedSkuContentWrapper`               |
-| `skuImage`                                |
-| `skuName`                                 |
-| `specificationsTableContainer`            |
-| `specificationsTabsContainer`             |
-| `specificationsTitle`                     |
-| `specificationsTable`                     |
-| `specificationsTablePropertyHeading`      |
-| `specificationsTableSpecificationHeading` |
-| `specificationItemProperty`               |
-| `specificationItemSpecifications`         |
-| `quantitySelectorContainer`               |
-| `quantitySelectorTitle`                   |
-| `quantitySelectorStepper`                 |
-| `availableQuantityContainer`              |
+| `buyButtonText`                           |
+| `colGroupLeadTime`                        |
+| `colGroupQuantityBreak`                   |
+| `colGroupUnitPrice`                       |
 | `highlightContent`                        |
-| `itemHighlight`                           |
 | `highlightTitle`                          |
 | `highlightValue`                          |
-| `priceContainer`                          |
-| `sellerPriceContainer`                    |
-| `inventoryContainer`                      |
 | `inventory`                               |
+| `inventoryContainer`                      |
+| `itemHighlight`                           |
+| `priceContainer`                          |
+| `productPriceBreaksContainer`             |
+| `productPriceBreaksContainer`             |
+| `productPriceQuantityDataColumn`          |
+| `productPriceTable`                       |
+| `productPriceTableFooterMultipleColumn`   |
+| `productPriceTableFooterRow`              |
+| `productPriceTableHeader`                 |
+| `productPriceTableHeaderRow`              |
+| `productPriceTableHeaderRowData`          |
+| `productPriceTableLeadTimeColumn`         |
+| `productPriceTableMainHeader`             |
+| `productPriceTablePriceColumn`            |
+| `productPriceTableQuantities`             |
+| `productPriceTableRow`                    |
+| `productPricingTableTitle`                |
+| `quantitySelectorContainer`               |
+| `quantitySelectorStepper`                 |
+| `quantitySelectorTitle`                   |
+| `selectedSkuContentWrapper`               |
+| `sellerInventory`                         |
+| `sellerInventoryWrapper`                  |
+| `sellerName`                              |
+| `sellerPriceContainer`                    |
+| `skuContentWrapper`                       |
+| `skuImage`                                |
+| `skuName`                                 |
+| `specificationItemProperty`               |
+| `specificationItemSpecifications`         |
+| `specificationsTable`                     |
+| `specificationsTableContainer`            |
+| `specificationsTablePropertyHeading`      |
+| `specificationsTableSpecificationHeading` |
+| `specificationsTabsContainer`             |
+| `specificationsTitle`                     |
+
+<!-- DOCS-IGNORE:start -->
+
+## Contributors ✨
+
+Thanks goes to these wonderful people:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
+
+<!-- DOCS-IGNORE:end -->
