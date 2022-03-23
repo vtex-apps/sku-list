@@ -1,7 +1,7 @@
 {
   "store/product-quantity.quantity": "الكمية",
   "store/specifications.title": "المواصفات",
-  "store/add-to-cart.success": "تمت اضافة المنتج الى عربتك",
+  "store/add-to-cart.success": "تمت إضافة المنتج إلى السلة بنجاح",
   "store/add-to-cart.duplicate": "عنصر موجود مسبقًا في عربتك",
   "store/add-to-cart.failure": "حدث خطأ ولم تتم إضافة العنصر إلى عربة التسوق الخاصة بك!",
   "store/add-to-cart.see-cart": "عرض عربة التسوق",
