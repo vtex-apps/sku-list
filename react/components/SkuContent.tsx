@@ -7,7 +7,7 @@ import useProduct from 'vtex.product-context/useProduct'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 import classNames from 'classnames'
 
-const CSS_HANDLES = ['skuContentWrapper', 'selectedSkuContentWrapper'] as const
+const CSS_HANDLES = ['skuContentWrapper', 'selectedSkuContentWrapper', 'unavailable'] as const
 
 interface Props {
   product: Product
@@ -24,6 +24,10 @@ const SkuContent = ({ item, product, children }: Props) => {
       dispatch({ type: 'SET_SELECTED_ITEM', args: { item: item } })
     }
   }
+  let available = 0;
+  item.sellers.forEach((seller) => {
+    available += seller.commertialOffer.AvailableQuantity;
+  });
   const containerClasses = classNames(
     'ba mb3 pa5',
     handles.skuContentWrapper,
@@ -34,6 +38,10 @@ const SkuContent = ({ item, product, children }: Props) => {
     {
       [`bw1 b--blue ${handles.selectedSkuContentWrapper}`]:
         selectedItem.itemId == item.itemId,
+    },
+    {
+      [`${handles.unavailable}`]:
+      available == 0,
     }
   )
   return (
