@@ -5,6 +5,7 @@ metadata:
   annotations:
     github.com/project-slug: vtex-apps/sku-list
     backstage.io/techdocs-ref: dir:./
+    vtex.com/application-id: 8CTAS5M9
 spec:
   system: b2b-suite
   type: frontend-ui
