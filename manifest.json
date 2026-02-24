@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "sku-list",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "title": "VTEX SKU List for B2B stores",
   "description": "",
   "builders": {
