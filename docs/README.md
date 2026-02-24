@@ -10,6 +10,8 @@
 
 The SKU List app is an essential B2B feature responsible for rendering a SKU list in the product details page.
 
+> ℹ This specification applies to B2B Suite only.
+
 ![sku-list](https://user-images.githubusercontent.com/52087100/85888338-c762d100-b7bf-11ea-9ca0-c808ef9641ea.png)
 
 ## Configuration
