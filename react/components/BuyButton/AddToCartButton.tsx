@@ -55,6 +55,9 @@ const adjustItemsForMutationInput = (
     seller: item.seller,
     quantity: item.quantity,
     options: item.options,
+    // Only sent when the search actually returned a token, keeping the payload
+    // unchanged while the field is not exposed by the product context yet
+    ...(item.priceToken ? { priceToken: item.priceToken } : {}),
   }))
 }
 
