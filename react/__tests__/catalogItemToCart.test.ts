@@ -1,7 +1,10 @@
 import { mapCatalogItemToCart } from '../components/BuyButton/modules/catalogItemToCart'
 import { Item, Product, Seller } from '../typings'
 
-const makeSeller = (sellerId: string, priceToken?: string): Seller => ({
+const makeSeller = (
+  sellerId: string,
+  token?: { priceToken?: string; PriceToken?: string }
+): Seller => ({
   sellerId,
   sellerName: `seller ${sellerId}`,
   commertialOffer: {
@@ -11,7 +14,7 @@ const makeSeller = (sellerId: string, priceToken?: string): Seller => ({
     RewardValue: 0,
     AvailableQuantity: 5,
     Installments: [],
-    ...(priceToken ? { PriceToken: priceToken } : {}),
+    ...token,
   },
 })
 
@@ -45,10 +48,16 @@ const mapWith = (sellers: Seller[], selectedSeller: Seller) =>
   })[0]
 
 describe('mapCatalogItemToCart priceToken', () => {
-  it('takes the price token of the seller sent on addToCart', () => {
-    const seller = makeSeller('1', 'signed-price-token')
+  it('takes the token exposed by search-graphql as `priceToken`', () => {
+    const seller = makeSeller('1', { priceToken: 'signed-price-token' })
 
     expect(mapWith([seller], seller).priceToken).toBe('signed-price-token')
+  })
+
+  it('falls back to the Catalog Search API `PriceToken`', () => {
+    const seller = makeSeller('1', { PriceToken: 'catalog-price-token' })
+
+    expect(mapWith([seller], seller).priceToken).toBe('catalog-price-token')
   })
 
   it('leaves the price token undefined when the search does not return one', () => {
@@ -59,14 +68,19 @@ describe('mapCatalogItemToCart priceToken', () => {
 
   it('does not take the price token of another seller', () => {
     const selectedSeller = makeSeller('1')
-    const otherSeller = makeSeller('2', 'other-seller-token')
+    const otherSeller = makeSeller('2', { priceToken: 'other-seller-token' })
 
     expect(mapWith([otherSeller], selectedSeller).priceToken).toBeUndefined()
   })
 
   it('takes the price token of the selected item, not of the product context item', () => {
-    const sellerOnSelectedItem = makeSeller('1', 'selected-item-token')
-    const sellerOnContextItem = makeSeller('1', 'context-item-token')
+    const sellerOnSelectedItem = makeSeller('1', {
+      priceToken: 'selected-item-token',
+    })
+
+    const sellerOnContextItem = makeSeller('1', {
+      priceToken: 'context-item-token',
+    })
 
     expect(
       mapWith([sellerOnSelectedItem], sellerOnContextItem).priceToken

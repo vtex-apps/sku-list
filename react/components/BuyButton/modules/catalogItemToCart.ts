@@ -68,10 +68,11 @@ export function mapCatalogItemToCart({
     sellersFromSelectedItem
   )
 
-  const priceToken = path<string>(
-    ['commertialOffer', 'PriceToken'],
-    signedSeller
-  )
+  // `vtex.search-graphql` exposes it as `priceToken` (>= 0.72.0), while the raw
+  // Catalog Search API returns it as `PriceToken`
+  const priceToken: string | undefined =
+    path(['commertialOffer', 'priceToken'], signedSeller) ||
+    path(['commertialOffer', 'PriceToken'], signedSeller)
 
   return (
     product &&
