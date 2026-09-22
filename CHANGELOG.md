@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.3] - 2026-09-22
+
 ### Added
 
 - Forward the signed price (`commertialOffer.priceToken`) from the product context as `priceToken` on the `addToCart` payload, so the Checkout can close the cart with the signed price while the Pricing is unavailable (Pricing Fallback V2)
