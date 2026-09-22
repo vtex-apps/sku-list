@@ -1,4 +1,4 @@
-import { path } from 'ramda'
+import { find, path, pathOr, propEq } from 'ramda'
 
 import {
   transformAssemblyOptions,
@@ -6,7 +6,13 @@ import {
   ParsedAssemblyOptionsMeta,
   Option,
 } from './assemblyOptions'
-import { AssemblyOptionItem, Item, Maybe, Product } from '../../../typings'
+import {
+  AssemblyOptionItem,
+  Item,
+  Maybe,
+  Product,
+  Seller,
+} from '../../../typings'
 
 interface MapCatalogItemToCartArgs {
   product: Maybe<Product>
@@ -34,6 +40,7 @@ export interface MapCatalogItemToCartReturn {
   variant: string
   skuId: string
   imageUrl: string | undefined
+  priceToken: string | undefined
   sellingPriceWithAssemblies: number
   options: Option[]
   assemblyOptions: ParsedAssemblyOptionsMeta
@@ -46,6 +53,27 @@ export function mapCatalogItemToCart({
   selectedSeller,
   assemblyOptions,
 }: MapCatalogItemToCartArgs): MapCatalogItemToCartReturn[] {
+  // Signed price from the search response, forwarded on addToCart so the
+  // Checkout can close the cart even while the Pricing is unavailable. It has
+  // to be read from the very SKU and seller sent on addToCart, since it signs
+  // that seller's price for that item
+  const sellersFromSelectedItem: Seller[] = pathOr(
+    [],
+    ['sellers'],
+    selectedItem
+  )
+
+  const signedSeller = find(
+    propEq('sellerId', selectedSeller && selectedSeller.sellerId),
+    sellersFromSelectedItem
+  )
+
+  // `vtex.search-graphql` exposes it as `priceToken` (>= 0.72.0), while the raw
+  // Catalog Search API returns it as `PriceToken`
+  const priceToken: string | undefined =
+    path(['commertialOffer', 'priceToken'], signedSeller) ||
+    path(['commertialOffer', 'PriceToken'], signedSeller)
+
   return (
     product &&
     selectedItem &&
@@ -68,6 +96,7 @@ export function mapCatalogItemToCart({
         variant: selectedItem.name,
         skuId: selectedItem.itemId,
         imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
+        priceToken,
         ...transformAssemblyOptions(
           path(['items'], assemblyOptions),
           path(['inputValues'], assemblyOptions),
